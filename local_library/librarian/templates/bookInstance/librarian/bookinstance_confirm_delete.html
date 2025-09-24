@@ -1,0 +1,18 @@
+{% extends "base_generics.html" %}
+
+{% block content %}
+
+    <h1>Delete BookInstance: {{ bookinstance.book.title }}</h1>
+
+    {% if user.bookinstance_set.all %}
+        <p>You can't delete this bookinstance until borrower do not due it back:</p>
+    {% else %}
+        <p>Are you sure you want to delete the author?</p>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" action="" value="Yes, delete.">
+        </form>
+    {% endif %}
+
+{% endblock %}

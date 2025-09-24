@@ -2,6 +2,7 @@
 
 {% block content %}
     {% if user.is_staff %}
+        <h5>{{ request.user.username }}</h5>
         <h3>Borrowed Books:</h3>
         <ul>
             {% for bookinst in bookinstance_list %}
@@ -9,8 +10,13 @@
                     <a href="{{ bookinst.get_absolute_url }}">{{ bookinst.book.title }}</a>
                         ({{ bookinst.due_back}}) - ({{ bookinst.borrower.username }})
                 </li>
-                {% if perms.catalog.can_mark_renewed %}
-                    <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>
+
+                {% if perms.catalog.change_bookinstance %}
+                    <a href="{% url 'bookinstance-update' bookinst.id %}">Renew</a>
+                {% endif %}
+
+                {% if perms.catalog.delete_bookinstance %}
+                    <a href="{% url 'bookinstance-delete' bookinst.id %}">Delete</a>
                 {% endif %}
                 
             {% endfor %}

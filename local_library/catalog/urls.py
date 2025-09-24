@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views 
 
 urlpatterns = [
@@ -8,6 +8,5 @@ urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('authors/<int:pk>', views.AuthorDetailView.as_view(), name='author-detail'),
     path('mybooks/', views.LoanedBookByUserListView.as_view(), name='mybooks'),
-    path('borrowed/', views.BorrowedBooksView.as_view(), name='borrowed-books'),
-    path('book/<uuid:pk>/renew', views.renew_book_librarian, name='renew-book-librarian'),
+    path('librarian/', include("librarian.urls")),
 ]

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Local apps
     "catalog.apps.CatalogConfig",
+    "librarian.apps.LibrarianConfig",
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,7 @@ ROOT_URLCONF = "locallibrary.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [ os.path.join(BASE_DIR ,'templates') ],
+        "DIRS": [ os.path.join(BASE_DIR ,'templates'), 'templates/librarian/book', "templates/librarian/bookInstance"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
